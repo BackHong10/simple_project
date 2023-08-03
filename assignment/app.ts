@@ -1,5 +1,8 @@
 import express, { ErrorRequestHandler } from 'express'
 import {sequelize} from './models'
+import dotenv from 'dotenv'
+import postRouter from './routes/post'
+dotenv.config()
 const app = express()
 
 app.set('port', process.env.PORT || 3000)
@@ -12,7 +15,7 @@ app.use(express.json())
 app.use(express.urlencoded())
 
 
-
+app.use('/post', postRouter)
 
 
 app.use((req,res,next) => {

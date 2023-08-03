@@ -14,3 +14,5 @@ Post.initiate(sequelize)
 
 User.associate()
 Post.associate()
+
+export {User,Post}

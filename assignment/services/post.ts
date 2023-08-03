@@ -75,15 +75,20 @@ export const deletePostService = async (postId: number, userId: number) => {
 }
 
 export const readAllPostService = async (page: number,limit: number) => {
-    const post = await Post.findAll({
+    try {
+        
+        const post = await Post.findAll({
         offset: page ? (page-1)*limit : 0,
         limit: limit
     })
 
     return post
+    } catch (error) {
+       console.log(error) 
+    }
 }
 
-export const readPostServiceById = async (postId: number) => {
+export const readPostByIdService = async (postId: number) => {
     const post = await Post.findOne({
         where: {
             id: postId

@@ -1,5 +1,6 @@
 import { RequestHandler,Request } from 'express'
-import {createPostService,deletePostService,updatePostService,readAllPostService,readPostServiceById} from '../services/post'
+import { convertTypeAcquisitionFromJson } from 'typescript'
+import {createPostService,deletePostService,updatePostService,readAllPostService,readPostByIdService} from '../services/post'
 
 export const createPost: RequestHandler = async (req,res,next) => {
     const result = await createPostService(req.body.content, req.user.id)
@@ -42,7 +43,14 @@ export const deletePost : RequestHandler = async (req,res,next) => {
 }
 
 export const readPost : RequestHandler = async (req,res,next) => {
-    const {num} = req.query.page
-    const {limit} = req.query.limit
-    const result = await readAllPostService(req.query.page.num , limit.num)
+    const {page, limit} = req.query
+    const result = await readAllPostService(Number(page) , Number(limit))
+
+    return res.json({post : result})
+}
+
+export const readPostById: RequestHandler = async (req,res,next) => {
+    const result = await readPostByIdService(Number(req.params.id))
+
+    return res.json({post: result})
 }

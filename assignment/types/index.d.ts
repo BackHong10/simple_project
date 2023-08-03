@@ -8,14 +8,7 @@ declare global{
             user:{
                 id: number
             },
-            query:{
-                page:{
-                    num: number
-                },
-                limit:{
-                    num: number
-                }
-            }
+            
         }
     }
     
