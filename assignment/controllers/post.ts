@@ -3,7 +3,7 @@ import { convertTypeAcquisitionFromJson } from 'typescript'
 import {createPostService,deletePostService,updatePostService,readAllPostService,readPostByIdService} from '../services/post'
 
 export const createPost: RequestHandler = async (req,res,next) => {
-    const result = await createPostService(req.body.content, req.user.id)
+    const result = await createPostService(req.body.content, res.locals.user.id)
 
     if(result === 'error'){
         return res.send("error")

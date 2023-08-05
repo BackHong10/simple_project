@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const models_1 = require("./models");
 const dotenv_1 = __importDefault(require("dotenv"));
 const post_1 = __importDefault(require("./routes/post"));
+const auth_1 = __importDefault(require("./routes/auth"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.set('port', process.env.PORT || 3000);
@@ -16,6 +17,7 @@ models_1.sequelize.sync().then(() => {
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded());
 app.use('/post', post_1.default);
+app.use('/auth', auth_1.default);
 app.use((req, res, next) => {
     const err = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
     next(err);

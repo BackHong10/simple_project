@@ -2,6 +2,7 @@ import express, { ErrorRequestHandler } from 'express'
 import {sequelize} from './models'
 import dotenv from 'dotenv'
 import postRouter from './routes/post'
+import authRouter from './routes/auth'
 dotenv.config()
 const app = express()
 
@@ -16,6 +17,7 @@ app.use(express.urlencoded())
 
 
 app.use('/post', postRouter)
+app.use('/auth', authRouter)
 
 
 app.use((req,res,next) => {

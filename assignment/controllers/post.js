@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.readPostById = exports.readPost = exports.deletePost = exports.updatePost = exports.createPost = void 0;
 const post_1 = require("../services/post");
 const createPost = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield (0, post_1.createPostService)(req.body.content, req.user.id);
+    const result = yield (0, post_1.createPostService)(req.body.content, res.locals.user.id);
     if (result === 'error') {
         return res.send("error");
     }
